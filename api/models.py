@@ -7,14 +7,19 @@ class ProblemsHealth(models.Model):
 
     def __str__(self) -> str:
         return self.name_problem
+
     
 class Client(models.Model):
     name = models.CharField(max_length=50)
     birthday = models.DateField()
     sex = models.CharField(max_length=1)
-    problem_health = models.ManyToManyField(ProblemsHealth, unique=False)
+    problem_health = models.ManyToManyField("ProblemsHealth", related_name='problems')
     date_create = models.DateTimeField(default=timezone.now)
     data_update = models.DateTimeField(default=timezone.now)
 
+
+    def __str__(self):
+        return self.name
+    
 
 
