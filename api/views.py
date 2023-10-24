@@ -84,22 +84,22 @@ def big_health_risk(request):
         else:
             ratings[pessoa] = total_ratings
     total_risk = []
-
+    
 
     list_rating = []
     for pessoa, rating in ratings.items():
         score = (1 / (1 + math.exp(-(-2.8 + rating)))) * 100
         list_rating += [score]
         total_risk += [pessoa, score]
-    
-    ''''
-    for i in range(len(total_risk)):
-        if type(total_risk[i]) == float:
-            most_score.append(total_risk[i])
-    
-    most_score = sorted(most_score, reverse=True)
-    '''
+
+    pairs = [(total_risk[i], total_risk[i+1]) for i in range(0, len(total_risk), 2)]
+
+    sorted_pairs = sorted(pairs, key=lambda x: x[1], reverse=True)
+
+    risk_10 = [i[0] for i in sorted_pairs[:10]]
+
+    print(pairs)
         
-    return Response(total_risk)
+    return Response(risk_10)
 
     

@@ -7,20 +7,16 @@ class ProblemHealthSerializer(serializers.ModelSerializer):
         fields = ('name_problem', 'rating')
 
     def validate_rating(self, value):
-        if (value > 2) or (value < 1):
-            print("ERRO")
-            raise serializers.ValidationError("Precisa ser 1 ou 2")
+        if (value > 2 or value < 1):
+            raise serializers.ValidationError(f'Erro de validação Rating deve ser 1 ou 2 e você enviou {value}')
         return value
-
 class ClientSerializer(serializers.ModelSerializer):
     problem_health = ProblemHealthSerializer(many=True)  
 
     class Meta:
         model = Client
         fields = '__all__'
-    # def validate_sex(self, value):
-    #     if value != "M" or value != "F" or value != "O":
-    #         raise serializers.ValidationError("ERRO")
+    
     def create(self, validated_data):
         problems_data = validated_data.pop('problem_health')
         client = Client.objects.create(**validated_data)

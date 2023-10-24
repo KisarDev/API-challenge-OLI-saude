@@ -1,5 +1,5 @@
 from django.urls import path
-from api.views import big_health_risk, client_edit, criar, get_client_id, order
+from api.views import criar, get_client_id, order, client_edit, big_health_risk
 
 urlpatterns = [
     path('create/', criar, name='create'),
