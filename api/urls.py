@@ -1,10 +1,10 @@
 from django.urls import path
-from api.views import criar, get_client_id, order, client_edit, big_health_risk
+from api.views import create_customer, list_customer_id, list_customer, edit_customer, customer_with_greatrisk
 
 urlpatterns = [
-    path('create/', criar, name='create'),
-    path('order/', order, name='order'),
-    path('edit/<str:pk>', client_edit, name='edit'),
-    path('get/<str:pk>', get_client_id, name='get'),
-    path('most_risk/', big_health_risk, name='most_risk'),
+    path('create_customer/', create_customer, name='create_customer'),
+    path('list_customer/', list_customer, name='list_customer'),
+    path('edit_customer/<str:pk>', edit_customer, name='edit_customer'),
+    path('list_customer_id/<str:pk>', list_customer_id, name='list_customer_id'),
+    path('customer_with_greatrisk/', customer_with_greatrisk, name='customer_with_greatrisk'),
 ]

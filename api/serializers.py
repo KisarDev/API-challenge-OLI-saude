@@ -15,7 +15,8 @@ class ClientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Client
-        fields = '__all__'
+        exclude = ['date_create', 'data_update']
+        
     
     def create(self, validated_data):
         problems_data = validated_data.pop('problem_health')
@@ -28,14 +29,15 @@ class ClientSerializer(serializers.ModelSerializer):
         return client
     
 
-class ClientSerializerOrder(serializers.ModelSerializer):
+class ClientSerializerList(serializers.ModelSerializer):
+    
     problem_health = ProblemHealthSerializer(many=True)
 
     class Meta:
         model = Client
         fields = '__all__'
 
-# CLASSE USADA PARA DEFINIR A FUNÇÃO DE ATUALIZAR O BANCO 
+
 class ClientSerializerUpdate(serializers.ModelSerializer):
     problem_health = ProblemHealthSerializer(many=True)
 
@@ -49,7 +51,7 @@ class ClientSerializerUpdate(serializers.ModelSerializer):
         instance.sex = validated_data.get('sex', instance.sex)
 
         problems_data = validated_data.get('problem_health', [])
-        instance.problem_health.clear()  # Remove todas as associações ManyToMany existentes
+        instance.problem_health.clear()  
 
         for problem_data in problems_data:
             problem = ProblemsHealth.objects.create(**problem_data)
