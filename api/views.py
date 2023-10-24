@@ -111,8 +111,6 @@ def customer_with_greatrisk(request):
     sorted_pairs = sorted(pairs_customer_and_score, key=lambda x: x[1], reverse=True)
 
     most_10_risk = [i[0] for i in sorted_pairs[:10]]
-
-    print(pairs_customer_and_score)
         
     return Response(most_10_risk)
 
