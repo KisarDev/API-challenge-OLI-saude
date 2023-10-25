@@ -24,9 +24,9 @@ Esse calculo é baseado em um atributo cujo é o grau da gravidade do problema d
 
 ## Como Usar
 
-Para usar este projeto, siga as instruções detalhadas:
-Trabalhando na parte guia
-
+Para usar este projeto, siga as instruções detalhadas na doc da API:
+http://127.0.0.1:8000/swagger/
+Vode pode registrar mais pacientes, e adicionar quantas doenças quiser com um rating de 1 ou 2, para testar as funcionalidades.
 ## Avaliação
 
 Este projeto foi criado com ênfase na estrutura, arquitetura e organização do código, bem como na aplicação de boas práticas de programação. Os critérios de avaliação incluem:
